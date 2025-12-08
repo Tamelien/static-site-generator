@@ -1,5 +1,7 @@
 import unittest
-from markdown import split_nodes_delimiter
+from markdown import (split_nodes_delimiter, 
+                      extract_markdown_links,
+                      extract_markdown_images)
 
 from textnode import TextNode, TextType
 
@@ -91,6 +93,20 @@ class TestInlineMarkdown(unittest.TestCase):
             split_nodes_delimiter([node], delimiter, TextType.italic_text)
 
         self.assertEqual(str(ctx.exception), f"Invalid Markdown syntax. Matching closing {delimiter} is not found")
+
+    def test_extract_markdown_images(self):
+        text = "This is text with a ![rick roll](https://i.imgur.com/aKaOqIh.gif)"
+        self.assertListEqual(extract_markdown_images(text), [("rick roll", "https://i.imgur.com/aKaOqIh.gif")])
+        
+        text = "This is text with a link [to google.com](https://google.com)"
+        self.assertEqual(extract_markdown_images(text), [])
+
+    def test_extract_markdown_links(self):
+        text = "This is text with a ![rick roll](https://i.imgur.com/aKaOqIh.gif)"
+        self.assertEqual(extract_markdown_links(text), [])
+
+        text = "This is text with a link [to google.com](https://google.com)"
+        self.assertEqual(extract_markdown_links(text), [("to google.com", "https://google.com")])
 
 if __name__ == "__main__":
     unittest.main()

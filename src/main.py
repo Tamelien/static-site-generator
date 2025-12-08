@@ -1,17 +1,15 @@
 from textnode import (TextNode,
                       TextType)
 
-from markdown import split_nodes_delimiter
-
-from htmlnode import (LeafNode)
+from markdown import extract_markdown_images, extract_markdown_links
 
 def main():
-    node1 = TextNode("This is text with a `code block` word", TextType.text)
-    node2 = TextNode("This is an _italic_ word.", TextType.italic_text)
-    node1 = TextNode("code block word", TextType.text)
-    new_nodes = split_nodes_delimiter([node1, node2], "`", TextType.code_text)
-
-    print(new_nodes)
+    text = "This is text with a ![rick roll](https://i.imgur.com/aKaOqIh.gif) and ![obi wan](https://i.imgur.com/fJRm4Vk.jpeg)"
+    print(extract_markdown_images(text))
+    print(extract_markdown_links(text))
+    text = "This is text with a link [to google.com](https://google.com) and [to youtube](https://www.youtube.com)"
+    print(extract_markdown_images(text))
+    print(extract_markdown_links(text))
 
 if __name__ == "__main__":
     main()
