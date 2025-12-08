@@ -3,7 +3,8 @@ from markdown import (split_nodes_delimiter,
                       extract_markdown_links,
                       extract_markdown_images,
                       split_nodes_link,
-                      split_nodes_image)
+                      split_nodes_image,
+                      text_to_textnodes)
 
 from textnode import TextNode, TextType
 
@@ -160,6 +161,28 @@ class TestInlineMarkdown(unittest.TestCase):
                 TextNode(" with text that follows", TextType.text),
             ],
             new_nodes,
+        )
+
+    def test_text_to_textnodes(self):
+        text = "This is **text** with an _italic_ word and a" \
+        " `code block` and an ![rick roll](https://i.imgur.com/aKaOqIh.gif)" \
+        " and a [link](https://youtube.com) with extra text."
+
+        self.assertListEqual(
+            [
+                TextNode("This is ", TextType.text),
+                TextNode("text", TextType.bold_text),
+                TextNode(" with an ", TextType.text),
+                TextNode("italic", TextType.italic_text),
+                TextNode(" word and a ", TextType.text),
+                TextNode("code block", TextType.code_text),
+                TextNode(" and an ", TextType.text),
+                TextNode("rick roll", TextType.image, "https://i.imgur.com/aKaOqIh.gif"),
+                TextNode(" and a ", TextType.text),
+                TextNode("link", TextType.link, "https://youtube.com"),
+                TextNode(" with extra text.", TextType.text)
+            ],
+            text_to_textnodes(text),
         )
 
 if __name__ == "__main__":
