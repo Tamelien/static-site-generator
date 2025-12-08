@@ -25,7 +25,7 @@ class TextNode():
 
 
     def __repr__(self) -> str:
-        return f"TextNode({self.text}, {self.text_type.value}, {self.url})"
+        return f"TextNode({self.text}, TextType.{self.text_type.value}, {self.url})"
 
 
 def text_node_to_html_node(text_node) -> LeafNode:
