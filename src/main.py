@@ -1,12 +1,18 @@
 from textnode import (TextNode,
                       TextType)
 
-from markdown import text_to_textnodes
+from markdown_blocks import markdown_to_blocks
 
 def main():
-    text = "This is **text** with an _italic_ word and a `code block` and an ![rick roll](https://i.imgur.com/aKaOqIh.gif) and a [link](https://youtube.com) with extra text"
+    markdown = """# This is a heading
 
-    print(text_to_textnodes(text))
+    This is a paragraph of text. It has some **bold** and _italic_ words inside of it.
+
+    - This is the first list item in a list block
+    - This is a list item
+    - This is another list item"""
+
+    print(markdown_to_blocks(markdown))
     
 
 if __name__ == "__main__":
