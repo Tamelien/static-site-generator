@@ -49,7 +49,7 @@ class ParentNode(HTMLNode):
         if self.tag is None:
             raise ValueError("invalid Node: no tag")
         
-        if self.children is None or len(self.children) == 0:
+        if self.children is None:
             raise ValueError("invalid Node: no children")
 
 

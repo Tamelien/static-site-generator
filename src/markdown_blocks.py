@@ -1,6 +1,7 @@
 from enum import Enum
 import re
 
+
 class BlockType(Enum):
     paragraph = "paragraph"
     heading = "heading"
@@ -42,10 +43,8 @@ def block_to_block_type(markdown: str) -> BlockType:
             m = re.match(r"^(\d+)\. ", line)
             if int(m.group(1)) != i: # type: ignore 
                 return BlockType.paragraph
-        return BlockType.ordered_list
-
-    
+        return BlockType.ordered_list  
 
     return BlockType.paragraph
-    
-   
+
+
