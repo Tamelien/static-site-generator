@@ -32,7 +32,7 @@ def block_to_block_type(markdown: str) -> BlockType:
     if len(lines) == 1 and re.match(r"#{1,6} ", markdown):
         return BlockType.heading
 
-    if all(re.match(r"^> ", line) for line in lines):
+    if all(re.match(r"^>", line) for line in lines):
         return BlockType.quote
 
     if all(re.match(r"^- ", line) for line in lines):

@@ -86,7 +86,7 @@ This is code with a list
     def test_block_to_block_type_quote(self):
         md = """
 > This is a quote.
-> This is a quote.
+>
 > This is a quote.
 """
         blocks = markdown_to_blocks(md)

@@ -2,7 +2,7 @@ import os
 import shutil
 
 
-def copy_files(source_dir_path, target_dir_path):
+def copy_files(source_dir_path: str, target_dir_path: str):
     if not os.path.exists(target_dir_path):
         print(f" make dir {target_dir_path}")
         os.mkdir(target_dir_path)

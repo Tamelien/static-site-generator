@@ -52,6 +52,7 @@ This is another paragraph with _italic_ text and `code` here
     def test_quote(self):
         md = """
 > This is a quote
+>
 > spanning multiple lines
 """
 
@@ -59,7 +60,7 @@ This is another paragraph with _italic_ text and `code` here
         html = node.to_html()
         self.assertEqual(
             html,
-            "<div><blockquote>This is a quote spanning multiple lines</blockquote></div>",
+            "<div><blockquote>This is a quote  spanning multiple lines</blockquote></div>",
         )
 
     def test_unordered_list(self):
