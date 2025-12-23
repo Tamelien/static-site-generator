@@ -1,1 +1,1 @@
-python src/main.py "/https://github.com/Tamelien/static-site-generator/
+python src/main.py "/https://github.com/Tamelien/static-site-generator/"
